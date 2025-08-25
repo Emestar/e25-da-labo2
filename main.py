@@ -130,6 +130,7 @@ class Application(QMainWindow):
             
             QMessageBox.information(self, "Sélection Actuelle", message)
             self.ui.textEdit_resultats.append(f"Affichage : {universite_nom} > {faculte_nom}")
+            self.vider_champs()
         else:
             QMessageBox.critical(self, "Erreur", f"Rien de selectionner")
     
@@ -179,10 +180,7 @@ class Application(QMainWindow):
             self.ui.textEdit_resultats.append(f"NOUVELLE UNIVERSITÉ AJOUTÉE : {nom_uni} ({code_uni})")
             
             # Vider les champs
-            self.ui.lineEdit_nom_universite.clear()
-            self.ui.lineEdit_ville_universite.clear()
-            self.ui.lineEdit_code_universite.clear()
-            self.ui.lineEdit_annee_universite.clear()
+            self.vider_champs()
             
             # Recharger les listes
             self.charger_universites()
@@ -237,10 +235,7 @@ class Application(QMainWindow):
                 self.ui.textEdit_resultats.append(f"AJOUT RÉUSSI : {nom_faculte} ({code_faculte}) ajoutée à {nom_uni}")
                 
                 # Vider les champs
-                self.ui.lineEdit_nom_faculte.clear()
-                self.ui.lineEdit_code_faculte.clear()
-                self.ui.lineEditl_nbEtudiants_faculte.clear()
-                self.ui.comboBox_universite_faculte.setCurrentIndex(0)
+                self.vider_champs()
                 
                 # Actualiser les listes si l'université actuel correspond
                 if self.ui.comboBox_universites.currentData() == id_uni:
@@ -263,7 +258,7 @@ class Application(QMainWindow):
             nb_uni = session.query(Universite).count()
             nb_facul = session.query(Faculte).count()
             
-            # Détail par pays
+            # Détail par université
             message = f"STATISTIQUES DE LA BASE DE DONNÉES\n\n"
             message += f"Total : {nb_uni} université, {nb_facul} facultés\n\n"
             
@@ -306,10 +301,10 @@ class Application(QMainWindow):
                 self.afficher_selection()
         
         self.ui.textEdit_resultats.append("=== DÉMONSTRATION TERMINÉE ===\n")
+        self.vider_champs()
 
     def vider_messages(self):
         self.ui.textEdit_resultats.clear()
-        # self.ui.textEdit_resultats.append("Messages vidés.")
 
     def valider_supprimer(self, nom):
         answer= QMessageBox.question(
@@ -377,6 +372,21 @@ class Application(QMainWindow):
 
         else:
             QMessageBox.critical(self, "Erreur", f"Rien de selectionner\nVeuillez utiliser les dropboxs du haut.")
+
+    def vider_champs(self):
+        # Vider les champs
+            self.ui.lineEdit_nom_universite.clear()
+            self.ui.lineEdit_ville_universite.clear()
+            self.ui.lineEdit_code_universite.clear()
+            self.ui.lineEdit_annee_universite.clear()
+
+            self.ui.lineEdit_nom_faculte.clear()
+            self.ui.lineEdit_code_faculte.clear()
+            self.ui.lineEditl_nbEtudiants_faculte.clear()
+            self.ui.comboBox_universite_faculte.setCurrentIndex(0)
+
+            self.ui.comboBox_universites.setCurrentIndex(0)
+            self.ui.comboBox_facultes.setCurrentIndex(0)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
