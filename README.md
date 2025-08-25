@@ -71,7 +71,7 @@ Puis, sélectionner une faculté parmie la liste de facultés fournie par l'univ
 ![select_faculte.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/select_faculte.jpg)
 
 Cliquer sur le bouton pour afficher :
-![launch.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/launch.jpg)
+![affiche.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/affiche.jpg)
 
 **Erreurs possibles :**
 
@@ -118,6 +118,8 @@ Si on ne rentre pas une donnée obligatoire, un pop-up va informer l'utilisateur
 dans ce cas, si on laisse le formulaire vide :
 ![add_faculte_empty.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/add_faculte_empty.jpg)
 
+Note : si on laisse les nombres d'étudiants vides, par défaut, l'application va mettre 0.
+
 Ajoutée avec succès:
 ![add_faculte_succes.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/add_faculte_succes.jpg)
 
@@ -129,7 +131,7 @@ Si on rentre des noms d'une université déjà enregistrée (le nom et/ou le cod
 #### Voir Statistiques
 
 En cliquant sur ce bouton, il affiche ceci :
-![affiche.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/affiche.jpg)
+![voir_stats.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/voir_stats.jpg)
 
 #### Vider les Messages
 
@@ -151,10 +153,10 @@ Après la sélection et avoir cliqué sur le bouton `Supprimer`, un pop-up de co
 Si confirmé, l'application confirme la surpression.
 ![delete_02.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/delete_02.jpg)
 
-Pour voir si les facultes lies a l'universite sont aussi suprimmer, on peut utiliser le bouton `Voir Statistiques`.
-**AVANT**
-![affiche.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/affiche.jpg)
-**APRÈS**
+Pour voir si les facultés liées à l'université sont aussi supprimées, on peut utiliser le bouton `Voir Statistiques`.</br>
+**AVANT**</br>
+![voir_stats.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/voir_stats.jpg)
+**APRÈS**</br>
 ![delete_03_proof.jpg](https://github.com/Emestar/e25-da-labo2/blob/natacha/documentation/img/delete_03_proof.jpg)
 
 ##### BONUS: Supprimer une faculté
