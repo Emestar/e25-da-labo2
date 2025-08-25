@@ -2,6 +2,7 @@ import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PySide6.QtCore import Qt
 from interface import Ui_MainWindow
+from sqlalchemy import func
 from database import (session, Universite, Faculte,
                         obtenir_universites, obtenir_facultes_par_universite,
                         ajouter_faculte, initialiser_donnees, afficher_toutes_les_donnees)
@@ -161,11 +162,11 @@ class Application(QMainWindow):
                 return
             
             # Vérifier que l'université n'existe pas déjà
-            universite_existant = session.query(Universite).filter(
-                (Universite.nom == nom_uni) | (Universite.code_universite == code_uni)
+            universite_existante = session.query(Universite).filter(
+                (func.upper(Universite.nom) == nom_uni.upper()) | (func.upper(Universite.code_universite) == code_uni.upper())
             ).first()
             
-            if universite_existant:
+            if universite_existante:
                 QMessageBox.warning(self, "Erreur", f"Cette université existe déjà!")
                 return
             
@@ -219,14 +220,14 @@ class Application(QMainWindow):
                 QMessageBox.warning(self, "Validation", validation)
                 return
             
-            # # Vérifier que la faculté n'existe pas déjà
-            # faculte_existant = session.query(Faculte).filter(
-            #     (Faculte.nom == nom_faculte) | (Faculte.code_faculte == code_faculte)
-            # ).first()
-            
-            # if faculte_existant:
-            #     QMessageBox.warning(self, "Erreur", f"Cette faculté existe déjà!")
-            #     return
+            # Vérifier que la faculté n'existe pas déjà
+            faculte_existante = session.query(Faculte).filter(
+                ((func.upper(Faculte.code_faculte) == code_faculte.upper()) & (Faculte.universite_id == id_uni)) | ((func.upper(Faculte.nom) == nom_faculte.upper()) & (Faculte.universite_id == id_uni))
+            ).first()
+
+            if faculte_existante:
+                QMessageBox.warning(self, "Erreur", f"Cette faculté existe déjà dans cette université!")
+                return
             
             # Ajouter la faculté via la fonction de la base de données
             nouvelle_faculte = ajouter_faculte(nom_faculte, code_faculte, int(nb_etudiants), id_uni)
